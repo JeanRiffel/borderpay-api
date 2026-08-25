@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-NestJS backend that bridges a web front-end to an Ethereum `PaymentEscrow` smart contract via web3.js. It is the middle piece of a 3-repo system:
+NestJS backend that bridges a web front-end to an Ethereum `PaymentEscrow` smart contract via web3.js. It is the middle piece of the **BorderPay** 3-repo system (this repo renamed `borderpay-api`):
 
-- [Payment Escrow Smart Contract](https://github.com/JeanRiffel/lottery-smart-contract) — Solidity contract holding a `sender`'s funds for a `beneficiary`, released or refunded by a trusted `arbiter`.
-- **This repo** — REST API that receives requests and forwards them to the smart contract via web3.
-- [Front-end Payment Escrow](https://github.com/JeanRiffel/front-end-lottery-smart-contract) — user-facing UI, organized into Sender / Arbiter / "any account" action groups matching this API.
+- [BorderPay Escrow](https://github.com/JeanRiffel/borderpay-escrow) — Solidity contract holding a `sender`'s funds for a `beneficiary`, released or refunded by a trusted `arbiter`.
+- **This repo** (`borderpay-api`) — REST API that receives requests and forwards them to the smart contract via web3.
+- [BorderPay App](https://github.com/JeanRiffel/borderpay-app) — user-facing UI, organized into Sender / Arbiter / "any account" action groups matching this API.
 
 This repo (and its two siblings) previously targeted a different contract — a pseudo-random `Lottery` (bets, `pickWinner`, `manager`). That domain is gone; nothing here references it anymore.
 
@@ -40,9 +40,9 @@ Swagger docs are served at `http://localhost:3001/api-docs#/` once the app is ru
 Environment variables are loaded via `dotenv` in `src/main.ts` from a `.env` file at the repo root:
 
 - `LOCAL_PORT` — port the Nest app listens on.
-- `CONTRACT_ADDRESS` — deployed `PaymentEscrow` contract address (from `hardhat ignition deploy` in the `lottery-smart-contract` repo).
+- `CONTRACT_ADDRESS` — deployed `PaymentEscrow` contract address (from `hardhat ignition deploy` in the `borderpay-escrow` repo).
 - `RPC_ADDRESS` — HTTP RPC endpoint used to build the web3 connection (a local Hardhat node by default — this repo used to point at Ganache, which the contract repo has since dropped in favor of Hardhat).
-- `ABI` — JSON-stringified `PaymentEscrow` ABI, parsed at runtime in `PaymentEscrowContract`. Copy it from `lottery-smart-contract/artifacts/contracts/PaymentEscrow.sol/PaymentEscrow.json`'s `.abi` field after `npx hardhat compile`; re-copy whenever the contract's public interface changes.
+- `ABI` — JSON-stringified `PaymentEscrow` ABI, parsed at runtime in `PaymentEscrowContract`. Copy it from `borderpay-escrow/artifacts/contracts/PaymentEscrow.sol/PaymentEscrow.json`'s `.abi` field after `npx hardhat compile`; re-copy whenever the contract's public interface changes.
 - `FRONT_END_ADDRESS` — allowed CORS origin, applied globally in `GeneralModule`.
 
 ## Architecture

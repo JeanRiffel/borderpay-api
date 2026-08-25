@@ -1,15 +1,15 @@
 
-# Back End Payment Escrow
+# BorderPay API
 
 ## Project Overview
 
 This project serves educational purposes, offering a REST API that bridges a web front-end to an Ethereum conditional payment escrow smart contract. A `sender` opens and funds a payment for a `beneficiary`, and a trusted `arbiter` — confirming off-chain that the underlying transfer settled or failed — releases the funds to the beneficiary or refunds them to the sender.
 
-The project is divided into 3 projects:
+The project is divided into 3 repos (part of the **BorderPay** project):
 
- - [Payment Escrow Smart Contract](https://github.com/JeanRiffel/lottery-smart-contract): This holds the funds and exposes `createPayment`/`fundPayment`/`releasePayment`/`refundPayment`/`withdraw`;
-- Back-end Payment Escrow*: This handles the requests from the user and sends them to the smart contract.
-- [Front-end Payment Escrow](https://github.com/JeanRiffel/front-end-lottery-smart-contract): This is the user interface that the user performs actions through.
+ - [BorderPay Escrow](https://github.com/JeanRiffel/borderpay-escrow): This holds the funds and exposes `createPayment`/`fundPayment`/`releasePayment`/`refundPayment`/`withdraw`;
+- BorderPay API*: This handles the requests from the user and sends them to the smart contract.
+- [BorderPay App](https://github.com/JeanRiffel/borderpay-app): This is the user interface that the user performs actions through.
 
 
 ## For this project I used
