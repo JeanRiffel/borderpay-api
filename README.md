@@ -1,15 +1,15 @@
 
-# Back End Lottery Smart Contract
+# Back End Payment Escrow
 
 ## Project Overview
 
-This project serves educational purposes, offering a web application that allows users to place bets on randomly generated numbers using Ether. A smart contract manages the bets, receives Ether, and determines the winning number randomly. The participant with the correct number receives the accumulated Ether sum.
+This project serves educational purposes, offering a REST API that bridges a web front-end to an Ethereum conditional payment escrow smart contract. A `sender` opens and funds a payment for a `beneficiary`, and a trusted `arbiter` — confirming off-chain that the underlying transfer settled or failed — releases the funds to the beneficiary or refunds them to the sender.
 
 The project is divided into 3 projects:
 
- - [Lottery Smart Contract](https://github.com/JeanRiffel/lottery-smart-contract): This handle the bets and decided the winner of the bets. Also reward the winner with all money available;
-- Back-end Lottery Smart Contract*:  This handle the requests from the user and send it to the smart contract.
-- [Front-end Lottery Smart Contract](https://github.com/JeanRiffel/front-end-lottery-smart-contract): This is the user interface that the use perform actions.
+ - [Payment Escrow Smart Contract](https://github.com/JeanRiffel/lottery-smart-contract): This holds the funds and exposes `createPayment`/`fundPayment`/`releasePayment`/`refundPayment`/`withdraw`;
+- Back-end Payment Escrow*: This handles the requests from the user and sends them to the smart contract.
+- [Front-end Payment Escrow](https://github.com/JeanRiffel/front-end-lottery-smart-contract): This is the user interface that the user performs actions through.
 
 
 ## For this project I used
@@ -23,6 +23,8 @@ The project is divided into 3 projects:
 ```bash
 $ yarn install
 ```
+
+Copy `.env.example`-style values into your own `.env` (see `CLAUDE.md` for what each variable means) — in particular `CONTRACT_ADDRESS`, `RPC_ADDRESS` and `ABI` need to point at a real deployed `PaymentEscrow` contract.
 
 ## Running the app
 

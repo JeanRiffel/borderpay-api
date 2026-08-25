@@ -1,7 +1,7 @@
 import Web3 from 'web3';
-import Web3Connection from '../domain/lottery-smart-contract/entity/Web3Connection';
+import Web3Connection from '../domain/payment-escrow/entity/Web3Connection';
 
-class Web3ConnectionSmartContractLottery implements Web3Connection {
+class Web3ConnectionPaymentEscrow implements Web3Connection {
   private _web3: Web3;
 
   constructor(provider: string) {
@@ -13,4 +13,4 @@ class Web3ConnectionSmartContractLottery implements Web3Connection {
   }
 }
 
-export default Web3ConnectionSmartContractLottery;
+export default Web3ConnectionPaymentEscrow;

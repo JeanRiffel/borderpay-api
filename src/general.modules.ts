@@ -1,12 +1,14 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { LotteryModule } from './domain/lottery-smart-contract/module/lotery.module';
+import { PaymentEscrowModule } from './domain/payment-escrow/module/payment-escrow.module';
 import * as cors from 'cors';
 
 @Module({
-  imports: [LotteryModule],
+  imports: [PaymentEscrowModule],
 })
 export class GeneralModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(cors({ origin: process.env.FRONT_END_ADDRESS})).forRoutes('*');
+    consumer
+      .apply(cors({ origin: process.env.FRONT_END_ADDRESS }))
+      .forRoutes('*');
   }
 }
