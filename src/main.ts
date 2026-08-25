@@ -9,8 +9,10 @@ async function bootstrap() {
   const app = await NestFactory.create(GeneralModule);
 
   const config = new DocumentBuilder()
-    .setTitle('API Example')
-    .setDescription('API description')
+    .setTitle('BorderPay API')
+    .setDescription(
+      'REST API bridging a web front-end to the BorderPay Escrow smart contract.',
+    )
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);

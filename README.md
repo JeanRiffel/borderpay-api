@@ -24,7 +24,7 @@ The project is divided into 3 repos (part of the **BorderPay** project):
 $ yarn install
 ```
 
-Copy `.env.example`-style values into your own `.env` (see `CLAUDE.md` for what each variable means) — in particular `CONTRACT_ADDRESS`, `RPC_ADDRESS` and `ABI` need to point at a real deployed `PaymentEscrow` contract.
+Copy `.env.example` to `.env` (see `CLAUDE.md` for what each variable means) — in particular `CONTRACT_ADDRESS`, `RPC_ADDRESS` and `ABI` need to point at a real deployed `PaymentEscrow` contract.
 
 ## Running the app
 
