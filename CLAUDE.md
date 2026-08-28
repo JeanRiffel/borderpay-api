@@ -33,7 +33,18 @@ yarn test:e2e            # e2e tests (jest config in test/jest-e2e.json)
 
 To run a single unit test file: `yarn test <path-or-pattern>` (e.g. `yarn test payment-escrow.service.spec.ts`).
 
-Swagger docs are served at `http://localhost:3001/api-docs#/` once the app is running.
+A Husky `pre-commit` hook (`.husky/pre-commit`, wired via the `prepare` script) runs `lint-staged`
+on every commit, applying `eslint --fix` + `prettier --write` to staged `.ts` files — see the
+`lint-staged` key in `package.json` for the exact config.
+
+Swagger docs are served at `http://localhost:3001/api-docs#/` once the app is running. A
+[Bruno](https://www.usebruno.com/) collection covering every endpoint lives at
+`bruno/borderpay-api/` (open via **File → Open Collection**) for manual testing without Swagger's UI.
+
+VS Code debugging: `.vscode/launch.json` has two configs — `NestJS Debug` (launches the compiled
+`dist/main.js` with `--inspect`; requires `yarn build` first) and `Attach to start:debug` (attaches
+to the inspector port `9229` opened by `yarn start:debug`, i.e. `nest start --debug --watch` —
+the faster loop since it hot-reloads without a manual rebuild).
 
 ## Configuration
 
@@ -72,3 +83,9 @@ The code under `src/domain/payment-escrow/` follows a layered/DDD-ish structure 
 `src/general.modules.ts` is the app's root module, importing `PaymentEscrowModule` and applying `cors()` middleware globally scoped to `FRONT_END_ADDRESS`.
 
 Since `PaymentEscrowService` builds its dependencies manually via `new PaymentEscrowFactory()` rather than through Nest's DI container, there's no provider binding to override for tests — `service/test/payment-escrow.service.spec.ts` mocks `PaymentEscrowFactory` at the module level (`jest.mock('../../factory/PaymentEscrowFactory')`) and stubs `buildSmartContractPaymentEscrow()` to return a mocked `PaymentEscrowSmartContract`; follow this pattern for new service tests rather than trying to override providers.
+
+`test/app.e2e-spec.ts` follows the same idea at the HTTP layer: it imports the real `GeneralModule`
+(not a hand-rolled test module) so routing/middleware are exercised end-to-end, but still mocks
+`PaymentEscrowFactory` the same way as the unit test — this keeps the e2e suite runnable without a
+real RPC node or deployed contract. Extend it with `supertest` calls against
+`app.getHttpServer()` for new endpoints rather than spinning up a live chain.

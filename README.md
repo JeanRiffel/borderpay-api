@@ -55,3 +55,22 @@ $ yarn run test:cov
 ## Run Swagger
 
 http://localhost:3001/api-docs#/
+
+## API Collection (Bruno)
+
+A [Bruno](https://www.usebruno.com/) collection with every endpoint pre-filled is available at
+[bruno/borderpay-api/](bruno/borderpay-api/). Open it via **File → Open Collection** and select
+the `Local` environment (`http://localhost:3001`).
+
+## Debugging (VS Code)
+
+`.vscode/launch.json` ships two configurations:
+
+- **NestJS Debug** — launches the compiled app (`dist/main.js`). Run `yarn build` first.
+- **Attach to start:debug** — run `yarn start:debug` in a terminal (watch mode), then attach from
+  VS Code. Recompiles and reconnects automatically on file changes — the faster loop.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, commit conventions, and test
+patterns (including the Husky pre-commit hook that runs lint-staged automatically).
