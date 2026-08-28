@@ -1,0 +1,31 @@
+meta {
+  name: Fund Payment
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/payment-escrow/fund
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "paymentId": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcd",
+    "sender": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "amount": "1.5"
+  }
+}
+
+docs {
+  Fund a previously created payment.
+
+  - `paymentId`: bytes32 hex string of the payment created via `Create Payment`.
+  - `sender`: address funding the payment (must match the payment's sender).
+  - `amount`: amount in ETH (converted to wei internally).
+}

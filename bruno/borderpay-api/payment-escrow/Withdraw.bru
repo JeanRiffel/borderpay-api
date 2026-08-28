@@ -1,0 +1,26 @@
+meta {
+  name: Withdraw
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/payment-escrow/withdraw
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "account": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+  }
+}
+
+docs {
+  Withdraw the caller's pending balance (funds released/refunded to this
+  account but not yet pulled out of the contract).
+}

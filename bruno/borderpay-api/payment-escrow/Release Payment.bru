@@ -1,0 +1,26 @@
+meta {
+  name: Release Payment
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/payment-escrow/release
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "paymentId": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcd"
+  }
+}
+
+docs {
+  Release a funded payment to its beneficiary. Arbiter-only on-chain
+  (the API sends the transaction from the contract's configured arbiter account).
+}

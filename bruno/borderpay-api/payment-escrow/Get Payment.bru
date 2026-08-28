@@ -1,0 +1,20 @@
+meta {
+  name: Get Payment
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/payment-escrow/payment/:paymentId
+  body: none
+  auth: none
+}
+
+params:path {
+  paymentId: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcd
+}
+
+docs {
+  Retrieve a payment by id. Returns `{ sender, beneficiary, amount, status }`,
+  where `status` is 0=Pending, 1=Funded, 2=Released, 3=Refunded.
+}

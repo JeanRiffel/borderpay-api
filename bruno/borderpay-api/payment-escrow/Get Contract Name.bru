@@ -1,0 +1,17 @@
+meta {
+  name: Get Contract Name
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/payment-escrow/contract-name
+  body: none
+  auth: none
+}
+
+docs {
+  Health-check style endpoint used by the front-end: returns the on-chain
+  `contractName()` value, or (on error) the error message itself instead of
+  failing the request.
+}

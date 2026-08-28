@@ -1,0 +1,26 @@
+meta {
+  name: Refund Payment
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/payment-escrow/refund
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "paymentId": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcd"
+  }
+}
+
+docs {
+  Refund a funded payment back to its sender. Arbiter-only on-chain
+  (the API sends the transaction from the contract's configured arbiter account).
+}
